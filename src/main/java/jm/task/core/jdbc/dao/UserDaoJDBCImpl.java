@@ -16,9 +16,10 @@ public class UserDaoJDBCImpl implements UserDao {
             + "`age` TINYINT NULL," + "PRIMARY KEY (`id`));";
     private static final String TABLE_DROP_SQL = "DROP TABLE IF EXISTS userdb.users";
     private static final String INSERT_IN_TABLE_SQL = "INSERT INTO userdb.users (name,lastName,age) VALUES (?,?,?);";
-    private static final String DELETE_FROM_TABLE_SQL ="DELETE FROM  userdb.users WHERE id =";
-    private static final String CLEAR_TABLE_SQL ="DELETE FROM  userdb.users";
-    private static final String SELECT_ALL ="select * from userdb.users";
+    private static final String DELETE_FROM_TABLE_SQL = "DELETE FROM  userdb.users WHERE id =";
+    private static final String CLEAR_TABLE_SQL = "DELETE FROM  userdb.users";
+    private static final String SELECT_ALL = "select * from userdb.users";
+
     public void createUsersTable() {
         try (Connection connect = Util.getConn()) {
             Statement statement = connect.createStatement();
@@ -52,7 +53,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void removeUserById(long id) {
         try (Connection connection = Util.getConn()) {
             Statement statement = connection.createStatement();
-            statement.executeUpdate(DELETE_FROM_TABLE_SQL+id);
+            statement.executeUpdate(DELETE_FROM_TABLE_SQL + id);
         } catch (SQLException e) {
             System.out.println("Ошибка удаления записи");
         }
